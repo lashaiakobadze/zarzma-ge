@@ -1,0 +1,15 @@
+{
+  "environment": {
+    "domain": "http://zarzma.ge",
+    "api": {
+      "dev": {
+        "enable": true,
+        "path": "http://31.146.13.229:44374"
+      },
+      "mock": {
+        "enable": false,
+        "path": "./mock_data"
+      }
+    }
+  }
+}
