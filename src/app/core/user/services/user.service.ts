@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { ApiService } from '../../api';
 
 export interface AuthData {
@@ -27,15 +28,15 @@ export class UserService {
   }
 
   getAuthData(): AuthData {
-    const token = localStorage.getItem('token');
-    const expirationDate = localStorage.getItem('expiration');
+    const token = localStorage.getItem('token') || 'TokenFromService';
+    const expirationDate = localStorage.getItem('expiration') || new Date();
 
     if (!token || !expirationDate) {
       return null;
     }
 
     return {
-      token,
+      token: token || 'TokenFromService',
       expirationDate: new Date(expirationDate)
     };
   }

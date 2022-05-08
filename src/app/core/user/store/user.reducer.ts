@@ -21,7 +21,6 @@ export enum AuthStatus {
 }
 
 export interface UserState {
-  // user: SBPlayer;
   authToken: string;
   isChecked: boolean;
   loadingStatus: LoadingStatus;
@@ -30,7 +29,6 @@ export interface UserState {
 }
 
 export const UserInitialState: UserState = {
-  // user: new SBPlayer(),
   isChecked: false,
   loadingStatus: LoadingStatus.NOT_LOADED,
   authStatus: AuthStatus.Undefined,
@@ -55,55 +53,18 @@ const reducer = createImmerReducer(
     return draft;
   }),
 
-  // on(userActions.SBTokenStatusChecked, (draft, _action) => {
-  //   draft.authStatus =
-  //     draft.user?.active === 0
-  //       ? SBAuthStatus.Authorized
-  //       : SBAuthStatus.Unauthorized;
-  //   draft.isChecked = true;
-  //   return draft;
-  // }),
-
   on(userActions.TokenValidateFailure, (draft, action) => {
     draft.error = action.error;
     draft.authStatus = AuthStatus.Unauthorized;
     draft.loadingStatus = LoadingStatus.LOADED;
     return draft;
+  }),
+
+  on(userActions.SBLogoutUserFailure, (draft, action) => {
+    draft.error = action.error;
+    return draft;
   })
-
-  // on(userActions.SBLogoutUserSuccess, (draft, _action) => {
-  //   return clearUserSpecificInfo(draft);
-  // }),
-
-  // on(userActions.SBClearUserInfoOnLogouSuccess, (draft, _action) => {
-  //   return clearUserSpecificInfo(draft);
-  // }),
-
-  // on(userActions.SBSessionExpired, (draft, _action) => {
-  //   const user: SBPlayer = new SBPlayer();
-  //   user.currency = draft.user.currency;
-  //   draft.user = user;
-  //   draft.authToken = null;
-  //   draft.authStatus = SBAuthStatus.Unauthorized;
-  //   draft.retail = null;
-  //   return draft;
-  // }),
-
-  // on(userActions.SBLogoutUserFailure, (draft, action) => {
-  //   draft.error = action.error;
-  //   return draft;
-  // })
 );
-
-// function clearUserSpecificInfo(draft: UserState): UserState {
-//   const user: SBPlayer = new SBPlayer();
-//   draft.authStatus = SBAuthStatus.Unauthorized;
-//   user.currency = draft.user.currency;
-//   draft.user = user;
-//   draft.authToken = null;
-//   draft.retail = null;
-//   return draft;
-// }
 
 /**
  * user reducers

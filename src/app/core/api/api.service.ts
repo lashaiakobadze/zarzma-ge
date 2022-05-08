@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-
 import { HttpHeaders } from '@angular/common/http';
-import { UrlQueryParams } from './urlQueryParams';
 
 import { Observable } from 'rxjs';
-
 import { Store } from '@ngrx/store';
+
+import { UrlQueryParams } from './urlQueryParams';
 import { APIEndpoint, APIMethod } from './api.models';
 import { RestService } from './rest.service';
 import { CoreConfig } from '../config/config.service';

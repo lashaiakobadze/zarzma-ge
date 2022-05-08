@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { CoreConfigModule } from './core/config/config.module';
-import { ApiService, CoreConfigReducer } from './core';
-import { UserEffects, UserModule, UserReducer } from './core/user';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { UserModule } from './core/user';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,10 +20,7 @@ import { EffectsModule } from '@ngrx/effects';
       path: `config/config.json`
     }),
     StoreModule.forRoot({}),
-    StoreModule.forFeature('user', UserReducer),
-    StoreModule.forFeature('coreConfig', CoreConfigReducer),
-    EffectsModule.forRoot(),
-    EffectsModule.forFeature([UserEffects])
+    EffectsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
