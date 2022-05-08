@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CoreConfig } from './config.service';
 import { CoreConfigArgs } from './config.args';
-// import { SBCoreConfigReducer } from './config.reducer';
+// import { CoreConfigReducer } from './config.reducer';
 
 /**
  * get coreConfig service instance and calls its load method
@@ -15,12 +15,11 @@ import { CoreConfigArgs } from './config.args';
 export function coreConfigFactory(instance: CoreConfig) {
   return () => instance.load();
 }
-// @dynamic
+/**
+ * @dynamic
+ */
 @NgModule({
-  imports: [
-    // StoreModule.forFeature('coreConfig', SBCoreConfigReducer),
-    HttpClientModule
-  ]
+  imports: [HttpClientModule]
 })
 export class CoreConfigModule {
   static forRoot(

@@ -4,23 +4,23 @@ import { createImmerReducer } from '../immerNgrx';
 import * as coreConfigActions from './config.actions';
 import { Configuration } from './core-config.interface';
 
-export interface SBCoreConfigSate {
+export interface CoreConfigSate {
   config: Configuration;
 }
 
-const initialState: SBCoreConfigSate = {
+const initialState: CoreConfigSate = {
   config: <any>{}
 };
 
 const reducer = createImmerReducer(
   initialState,
 
-  on(coreConfigActions.SBSetCoreConfigs, (draft, action) => {
+  on(coreConfigActions.SetCoreConfigs, (draft, action) => {
     draft.config = action.config;
     return draft;
   })
 );
 
-export function SBCoreConfigReducer(state: SBCoreConfigSate, action: Action) {
+export function CoreConfigReducer(state: CoreConfigSate, action: Action) {
   return reducer(state, action);
 }

@@ -4,7 +4,7 @@
     "api": {
       "dev": {
         "enable": true,
-        "path": "http://31.146.13.229:44374"
+        "path": "https://disease.sh"
       },
       "mock": {
         "enable": false,

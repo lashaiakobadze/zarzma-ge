@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
-// import { Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// import * as coreConfigActions from './config.actions';
+import * as coreConfigActions from './config.actions';
 import { Configuration } from './core-config.interface';
 
 /**
@@ -16,7 +16,7 @@ export class CoreConfig {
   private coreStore: any;
 
   constructor(
-    // private store: Store,
+    private store: Store,
     private http: HttpClient,
     @Inject('CoreConfigArgs') private config: any
   ) {
@@ -49,7 +49,7 @@ export class CoreConfig {
   }
 
   /**
-   * loads customer configuration
+   * loads configuration
    *
    * @memberof CoreConfig
    */
@@ -65,12 +65,12 @@ export class CoreConfig {
     return this.http.get(this.config.path).pipe(
       map((responseData: unknown) => {
         this.coreStore = responseData;
-        // this.store.dispatch(
-        //   coreConfigActions.SBSetCoreConfigs({
-        //     config: responseData
-        //   })
-        // );
-        // console.log('config loading COMPLETED!!!');
+        this.store.dispatch(
+          coreConfigActions.SetCoreConfigs({
+            config: responseData
+          })
+        );
+        console.log('config loading COMPLETED!!!');
         return responseData;
       })
     );

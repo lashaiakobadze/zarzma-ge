@@ -1,5 +1,5 @@
 import { createFeatureSelector } from '@ngrx/store';
-import { SBCoreConfigSate } from './config.reducer';
+import { CoreConfigSate } from './config.reducer';
 
-export const selectSBcoreConfig =
-  createFeatureSelector<SBCoreConfigSate>('coreConfig');
+export const selectCoreConfig =
+  createFeatureSelector<CoreConfigSate>('coreConfig');

@@ -5,13 +5,16 @@ import { UrlQueryParams } from './urlQueryParams';
 
 import { Observable } from 'rxjs';
 
-// import { Store } from '@ngrx/store';
-// import { selectSBuserToken } from '../../user/store/user.selectors';
+import { Store } from '@ngrx/store';
 import { APIEndpoint, APIMethod } from './api.models';
 import { RestService } from './rest.service';
 import { CoreConfig } from '../config/config.service';
+import { selectUserToken } from '../user';
+import { selectCoreConfig } from '../config';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ApiService {
   private token: string;
   private httpOptions = {};
@@ -19,17 +22,23 @@ export class ApiService {
 
   constructor(
     private restService: RestService,
-    private config: CoreConfig
-  ) // private store: Store
-  {
-    // this.store.select(selectSBuserToken).subscribe((token) => {
-    //   this.token = token;
-    //   this.httpOptions = {
-    //     headers: new HttpHeaders({
-    //       Authorization: 'Bearer ' + token
-    //     })
-    //   };
-    // });
+    private config: CoreConfig,
+    private store: Store
+  ) {
+    this.store.select(selectUserToken).subscribe((token: string) => {
+      this.token = token;
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token
+        })
+      };
+
+      console.log(token);
+    });
+
+    this.store.select(selectCoreConfig).subscribe((config) => {
+      console.log(config);
+    });
 
     this.token = 'token';
     this.httpOptions = {
@@ -46,11 +55,7 @@ export class ApiService {
    * s {Observable<any>}
    * @memberof ApiService
    */
-  apiCall(
-    endpoint?: APIEndpoint,
-    args?: any,
-    pathPar?: any
-  ): Observable<unknown> {
+  apiCall(endpoint?: APIEndpoint, args?: any, pathPar?: any): Observable<any> {
     let localArgs = args || {};
     const isMock: boolean =
       this.config.select((r) => r.environment.api.mock.enable) || !endpoint.api;

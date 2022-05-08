@@ -1,7 +1,7 @@
 import { APIEndpoint, APIMethod } from './api.models';
 
-export const FULL_TREE_URL: APIEndpoint = {
-  api: '/api/Login?',
+export const COUNTRY_URL: APIEndpoint = {
+  api: 'v3/covid-19/all',
   method: APIMethod.get,
   mock: [''],
   authorization: false
