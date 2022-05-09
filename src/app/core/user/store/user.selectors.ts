@@ -9,12 +9,12 @@ export const selectUserToken = createSelector(
   (state: UserState) => state?.authToken
 );
 
-export const selectUuthenticationError = createSelector(
+export const selectUserAuthenticationError = createSelector(
   selectUserState,
   (state: UserState) => state.error
 );
 
-export const selectUuthCheckStatus = createSelector(
+export const selectUserCheckStatus = createSelector(
   selectUserState,
   (state: UserState) => state.isChecked
 );

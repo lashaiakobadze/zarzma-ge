@@ -9,7 +9,6 @@ import { APIEndpoint, APIMethod } from './api.models';
 import { RestService } from './rest.service';
 import { CoreConfig } from '../config/config.service';
 import { selectUserToken } from '../user';
-import { selectCoreConfig } from '../config';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +30,6 @@ export class ApiService {
           Authorization: 'Bearer ' + token
         })
       };
-
-      console.log(token);
-    });
-
-    this.store.select(selectCoreConfig).subscribe((config) => {
-      console.log(config);
     });
 
     this.token = 'token';
@@ -107,12 +100,10 @@ export class ApiService {
 
     if (localArgs && !isMock) {
       if (endpoint.method !== APIMethod.post && !localArgs.ln) {
-        // if (!localArgs.ln) {
         localArgs = {
           ...localArgs,
           ln: this.language
         };
-        // }
       }
       queryParams = new UrlQueryParams(localArgs);
     }

@@ -3,7 +3,6 @@ export class UrlQueryParams {
 
   constructor(obj: any) {
     let count = 0;
-    // eslint-disable-next-line guard-for-in
     for (const key in obj) {
       if (
         obj[key] !== undefined &&
