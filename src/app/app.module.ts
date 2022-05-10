@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { CoreConfigModule } from './core/config/config.module';
 import { UserModule } from './core/user';
+import { ReplayService } from './core/sloth/sloth-router-replay.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { UserModule } from './core/user';
     StoreModule.forRoot({}),
     EffectsModule.forRoot()
   ],
-  providers: [],
+  providers: [ReplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
