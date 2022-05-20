@@ -11,5 +11,11 @@
         "path": "./mock_data"
       }
     }
+  },
+  "global": {
+    "lang": {
+      "default": "en",
+      "langs": ["ka", "en", "ru"]
+    }
   }
 }

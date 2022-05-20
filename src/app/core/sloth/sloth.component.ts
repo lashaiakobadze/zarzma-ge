@@ -57,7 +57,7 @@ export class SlothComponent implements OnInit, OnChanges {
         }
         if (this.outputs) {
           let outputKeys = Object.keys(this.outputs);
-          outputKeys.forEach((key) => {
+          outputKeys.forEach(key => {
             if (componentInstance.hasOwnProperty(key)) {
               componentInstance[key].subscribe((args: any) => {
                 this.outputs[key](args);
@@ -73,7 +73,7 @@ export class SlothComponent implements OnInit, OnChanges {
 
   private setInputs() {
     const inputKeys = Object.keys(this.inputs);
-    inputKeys.forEach((key) => {
+    inputKeys.forEach(key => {
       if (this.inputs.hasOwnProperty(key) && this.inputs[key] !== undefined) {
         this._componentInstance[key] = JSON.parse(
           JSON.stringify(this.inputs[key] || null)

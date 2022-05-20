@@ -1,5 +1,6 @@
 export interface Configuration {
   environment: Environment;
+  global: Global;
 }
 /**
  * Environment specific endpoints
@@ -34,4 +35,11 @@ export interface ApiUrl {
    */
   path?: string;
   [k: string]: unknown;
+}
+
+export interface Global {
+  lang: {
+    default: string;
+    langs: string[];
+  };
 }
