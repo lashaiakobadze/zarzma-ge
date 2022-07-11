@@ -8,8 +8,10 @@ declare global {
   }
 }
 
-@Injectable()
-export class SBDeviceService {
+@Injectable({
+  providedIn: 'root'
+})
+export class DeviceService {
   private renderer: Renderer2;
   private _isMobile: boolean = undefined;
   private _isTouchEnabled: boolean = undefined;

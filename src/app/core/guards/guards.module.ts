@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { SBDetectLangGuard } from './detect-language.guard';
+import { DetectLangGuard } from './detect-language.guard';
 
-const GUARDS = [SBDetectLangGuard];
+const GUARDS = [DetectLangGuard];
 
 @NgModule({
   declarations: [],

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 
 import { CoreConfig, ApiService, COUNTRY_URL } from './core';
+import { DeviceService } from './core/services/device.service';
 import { UserFacade } from './core/user/facades/user.facade';
 import { AutoAuthUser } from './core/user/store/user.actions';
 
@@ -21,12 +22,17 @@ export class AppComponent implements OnInit, OnDestroy {
     private coreConfig: CoreConfig,
     private userFacade: UserFacade,
     private cdr: ChangeDetectorRef,
-    private store: Store
+    private store: Store,
+    private deviceService: DeviceService
   ) {}
 
-  config = this.coreConfig.select((r) => r.environment);
+  config = this.coreConfig.select(r => r.environment);
 
   ngOnInit(): void {
+    const device = this.deviceService.getDevice();
+
+    console.log(device);
+
     const url = { ...COUNTRY_URL };
 
     this.userFacade

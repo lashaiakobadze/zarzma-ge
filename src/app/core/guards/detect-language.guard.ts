@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { CoreConfig } from '../config';
 
 @Injectable()
-export class SBDetectLangGuard implements CanActivate {
+export class DetectLangGuard implements CanActivate {
   constructor(private router: Router, private coreConfig: CoreConfig) {}
 
   canActivate(

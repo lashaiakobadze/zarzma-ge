@@ -4,7 +4,7 @@ import { ApiService } from '../api/api.service';
 import { CoreConfig } from '../config';
 
 @Injectable()
-export class SSLanguageService {
+export class LanguageService {
   private renderer: Renderer2;
   private _currLang: string;
   public get currLang(): string {

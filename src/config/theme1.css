@@ -1,0 +1,7 @@
+:root[data-theme="dark"] {
+  --bg_0: #0000;
+}
+
+:root[data-theme="light"] {
+  --bg_0: gray;
+}
